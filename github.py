@@ -25,7 +25,7 @@ def county_name(row):
 
 # function to extract the state name from the 'Geographic Area Name' column
 def state_name(row):
-    return #complete this statement
+    return row['Geographic Area Name'].strip().split(',')[2]
 
 # function to extract the tract number from the 'Geographic Area Name' column
 def tract_num(row):
@@ -40,5 +40,5 @@ df = pd.read_csv(filepath)
 df['fips'] = df.apply(geoid_parse_cty_fip, axis=1)
 #df['tract_geoid'] = df.apply(geoid_parse_cty_tract, axis=1)
 df['name_county'] =  df.apply(county_name, axis=1)
-#df['name_state'] =  df.apply(state_name, axis=1)
+df['name_state'] =  df.apply(state_name, axis=1)
 #df['num_tract'] =  df.apply(tract_num, axis=1)
